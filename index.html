@@ -1,0 +1,57 @@
+<input onchange="reset()" placeholder="text" id="text">
+<button onclick="reset()">reset</button>
+<button onclick="pause()">pause</button>
+
+<div id="current">
+
+</div>
+
+<script>
+    let current = document.getElementById('current'), text = document.getElementById('text'), current_id = 0, paused = false, interval_id = null, all = []
+
+    document.addEventListener('keydown', ({ key }) => {
+        switch (key) {
+            // case ArrowLeft:
+            //     pause()
+            //     previous()
+            // case ArrowRight:
+            //     pause();
+            //     next()
+            case " ":
+                pp();
+        }
+    })
+
+    const pp = () => {
+        paused ? play() : pause();
+    }
+
+    const reset = () => {
+        clearInterval(interval_id)
+        all = text.value.split(' ')
+        play()
+        current_id = 0;
+        console.log(all.length)
+    }
+
+    const pause = () => {
+        clearInterval(interval_id)
+        paused = true
+    }
+
+    const play = () => {
+        interval_id = setInterval(() => {
+            let next = all[current_id];
+            if (next) { current.innerText = next; ++current_id }
+        }, 137)
+        paused = false
+    }
+
+</script>
+
+<style>
+    #current {
+        margin: auto 0;
+        font-size: 37px;
+    }
+</style>
