@@ -28,7 +28,7 @@
 
     const reset = () => {
         clearInterval(interval_id)
-        all = text.value.split(' ')
+        all = text.value.split(/\s|\t|\n/)
         play()
         current_id = 0;
         console.log(all.length)
